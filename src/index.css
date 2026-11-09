@@ -3,39 +3,72 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    color-scheme: dark;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
-    background-color: #030712;
-    color: #f3f4f6;
+    background-color: #09090b;
+    color: #f4f4f5;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }
 
-/* Custom scrollbar */
+/* Custom modern subtle scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 7px;
 }
 ::-webkit-scrollbar-track {
-  background: #030712;
+  background: #09090b;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1f2937;
-  border-radius: 4px;
+  background: #27272a;
+  border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #374151;
+  background: #3f3f46;
 }
 
-/* AI Background Grid & Glows */
-.bg-grid-pattern {
-  background-image: radial-gradient(rgba(56, 189, 248, 0.08) 1px, transparent 1px);
-  background-size: 24px 24px;
-}
-
-.glow-card {
+/* Organic Bento Grid Card Styling */
+.bento-card {
   position: relative;
-  transition: all 0.3s ease;
+  background: rgba(24, 24, 27, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1.25rem;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.glow-card:hover {
-  box-shadow: 0 0 25px -5px rgba(6, 182, 212, 0.25);
-  border-color: rgba(6, 182, 212, 0.4);
+.bento-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.02) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.bento-card:hover {
+  border-color: rgba(255, 255, 255, 0.16);
+  background: rgba(24, 24, 27, 0.65);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 36px -12px rgba(0, 0, 0, 0.5);
+}
+
+/* Subtle organic mesh background */
+.bg-subtle-mesh {
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.07) 0%, transparent 50%),
+    radial-gradient(circle at 85% 30%, rgba(99, 102, 241, 0.04) 0%, transparent 40%);
 }

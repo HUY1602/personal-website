@@ -12,7 +12,7 @@ Thế mạnh cốt lõi của tôi xoay quanh việc phát triển các giải p
     email: "mqhuy1602@gmail.com",
     github: "https://github.com/HUY1602",
     linkedin: "https://linkedin.com",
-    avatar: "https://images.unsplash.com/photo-1534972195531-a756b1129745?auto=format&fit=crop&w=600&q=80", // Hoặc đặt ảnh cá nhân vào thư mục public/avatar.jpg
+    avatar: "/avatar.jpg", // Tự động load ảnh từ thư mục public/avatar.jpg
     resumeUrl: "#", // Link tải CV file PDF nếu có
   },
 
