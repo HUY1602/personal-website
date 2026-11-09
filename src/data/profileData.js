@@ -1,16 +1,16 @@
 export const profileData = {
   // THÔNG TIN CÁ NHÂN (Bạn có thể thay đổi các thông tin bên dưới theo thông tin của bạn)
   personal: {
-    fullName: "Kỹ sư AI / Machine Learning", // Thay bằng họ tên của bạn (VD: Nguyễn Minh Quân)
+    fullName: "Huy Quang", // Thay bằng họ tên của bạn (VD: Nguyễn Minh Quân)
     roleTitle: "AI & Machine Learning Engineer",
     badge: "Sẵn sàng cho các cơ hội hợp tác & dự án mới",
     shortBio: "Xây dựng các hệ thống Trí tuệ Nhân tạo thông minh, giải pháp LLM/RAG tối ưu và kiến trúc MLOps đưa mô hình AI từ ý tưởng vào sản phẩm thực tế.",
     detailedBio: `Xin chào! Tôi là một Kỹ sư AI với niềm đam mê sâu sắc trong việc ứng dụng Machine Learning và Deep Learning để giải quyết các bài toán kinh doanh phức tạp.
     
 Thế mạnh cốt lõi của tôi xoay quanh việc phát triển các giải pháp Generative AI, tối ưu hóa các Mô hình Ngôn ngữ Lớn (LLMs), xây dựng hệ thống Retrieval-Augmented Generation (RAG) hiệu năng cao và triển khai hạ tầng MLOps trên nền tảng đám mây (đặc biệt là Microsoft Azure).`,
-    location: "Hà Nội / TP. Hồ Chí Minh, Việt Nam",
-    email: "your-email@example.com",
-    github: "https://github.com",
+    location: "Hà Nội, Việt Nam",
+    email: "mqhuy1602@gmail.com",
+    github: "https://github.com/HUY1602",
     linkedin: "https://linkedin.com",
     avatar: "https://images.unsplash.com/photo-1534972195531-a756b1129745?auto=format&fit=crop&w=600&q=80", // Hoặc đặt ảnh cá nhân vào thư mục public/avatar.jpg
     resumeUrl: "#", // Link tải CV file PDF nếu có
