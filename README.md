@@ -1,10 +1,10 @@
-# 🚀 AI Engineer Portfolio Website
+# AI Engineer Portfolio Website
 
 Website cá nhân dành cho **Kỹ sư AI / Machine Learning (AI & ML Engineer)**, được tối ưu hóa sẵn sàng để triển khai miễn phí trên **Microsoft Azure Static Web Apps**.
 
 ---
 
-## 🛠️ Công nghệ sử dụng
+## Công nghệ sử dụng
 
 - **Frontend:** React 18, Vite
 - **Styling:** Tailwind CSS (Dark Mode & Cyberpunk AI Glow effects)
@@ -14,7 +14,7 @@ Website cá nhân dành cho **Kỹ sư AI / Machine Learning (AI & ML Engineer)*
 
 ---
 
-## 💻 Hướng dẫn chạy thử ở môi trường Local
+## Hướng dẫn chạy thử ở môi trường Local
 
 1. Cài đặt các thư viện (nếu chưa cài):
    ```bash
@@ -35,10 +35,9 @@ Website cá nhân dành cho **Kỹ sư AI / Machine Learning (AI & ML Engineer)*
 
 ---
 
-## ✏️ Cách chỉnh sửa thông tin cá nhân của bạn
+## Cách chỉnh sửa thông tin cá nhân của bạn
 
-Mọi thông tin cá nhân, tiểu sử, kỹ năng, dự án và liên kết mạng xã hội được lưu trữ tập trung tại một file duy nhất:
-👉 **`src/data/profileData.js`**
+Mọi thông tin cá nhân, tiểu sử, kỹ năng, dự án và liên kết mạng xã hội được lưu trữ tập trung tại một file duy nhất: **`src/data/profileData.js`**
 
 Bạn chỉ cần mở file này và chỉnh sửa:
 - `personal`: Họ tên, chức danh, email, liên kết GitHub, LinkedIn, ảnh đại diện, CV.
@@ -50,7 +49,7 @@ Bạn chỉ cần mở file này và chỉnh sửa:
 
 ---
 
-## ☁️ Hướng dẫn Deploy lên Microsoft Azure (Chi tiết từng bước)
+## Hướng dẫn Deploy lên Microsoft Azure
 
 ### Bước 1: Đẩy mã nguồn lên GitHub
 1. Truy cập [GitHub](https://github.com) và tạo một repository mới (ví dụ: `my-ai-portfolio`).
