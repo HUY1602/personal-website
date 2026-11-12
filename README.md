@@ -1,6 +1,6 @@
 # AI Engineer Portfolio Website
 
-Website cá nhân dành cho **Kỹ sư AI / Machine Learning (AI & ML Engineer)**, được tối ưu hóa sẵn sàng để triển khai miễn phí trên **Microsoft Azure Static Web Apps**.
+Website cá nhân dành cho **Kỹ sư AI / Machine Learning (AI & ML Engineer)**, có thể triển khai trên **Microsoft Azure Static Web Apps** hoặc **Azure App Service**.
 
 ---
 
@@ -9,7 +9,7 @@ Website cá nhân dành cho **Kỹ sư AI / Machine Learning (AI & ML Engineer)*
 - **Frontend:** React 18, Vite
 - **Styling:** Tailwind CSS (Dark Mode & Cyberpunk AI Glow effects)
 - **Icons:** Lucide Icons & Custom SVGs
-- **Deployment Platform:** Microsoft Azure Static Web Apps (Free Tier)
+- **Deployment Platforms:** Microsoft Azure Static Web Apps, Azure App Service
 - **CI/CD:** GitHub Actions (tự động build & deploy)
 
 ---
@@ -85,3 +85,15 @@ Bạn chỉ cần mở file này và chỉnh sửa:
 - Đợi khoảng 1 - 2 phút, vào mục **Overview** của Static Web App trên Azure Portal.
 - Bạn sẽ thấy đường dẫn **URL** dạng: `https://<random-name>.azurestaticapps.net`. Nhấp vào để xem website trực tiếp trên Internet!
 - Về sau, mỗi khi bạn chỉnh sửa file `src/data/profileData.js` và `git push` lên GitHub, Azure sẽ tự động cập nhật website chỉ trong vòng 1 phút!
+
+### Deploy lên Azure Web App (App Service, Windows)
+
+Workflow `.github/workflows/azure-webapp.yml` build ứng dụng bằng Node.js/Vite và deploy thư mục `dist` lên App Service. File `public/web.config` cấu hình IIS trả về `index.html` cho các URL của React SPA.
+
+1. Tạo Azure Web App và chọn **Windows** làm hệ điều hành.
+2. Trong GitHub repository, mở **Settings → Secrets and variables → Actions**:
+   - Thêm repository variable `AZURE_WEBAPP_NAME` với tên Web App trên Azure.
+   - Tải **Publish profile** từ trang Overview của Web App rồi thêm toàn bộ nội dung thành repository secret `AZURE_WEBAPP_PUBLISH_PROFILE`.
+3. Push lên nhánh `main` để chạy build và deploy tự động.
+
+Nếu repository đang có workflow .NET chạy `dotnet build`, hãy thay thế hoặc xóa workflow đó; dự án này là React/Vite, không có project .NET.
