@@ -24,7 +24,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-20 sm:py-28 relative border-t border-zinc-900">
+    <section id="contact" className="scroll-reveal py-20 sm:py-28 relative border-t border-zinc-900">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}

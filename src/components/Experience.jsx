@@ -4,7 +4,7 @@ import { profileData } from '../data/profileData';
 
 export default function Experience() {
   return (
-    <section id="experience" className="py-20 sm:py-28 relative border-t border-zinc-900">
+    <section id="experience" className="scroll-reveal py-20 sm:py-28 relative border-t border-zinc-900">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}

@@ -30,7 +30,7 @@ export default function Hero() {
   const currentNodes = activeTab === 'rag' ? ragNodes : mlopsNodes;
 
   return (
-    <section className="relative pt-28 sm:pt-36 pb-20 md:pb-28 overflow-hidden">
+    <section className="scroll-reveal relative pt-28 sm:pt-36 pb-20 md:pb-28 overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Profile Intro with Avatar & Badges */}
@@ -67,7 +67,7 @@ export default function Hero() {
             <div className="space-y-3">
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.15]">
                 Xây dựng hệ thống <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-teal-300 to-indigo-300">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-teal-300 to-indigo-300 text-gradient-flow">
                   AI thực tiễn & hiệu quả.
                 </span>
               </h1>
