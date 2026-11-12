@@ -88,12 +88,10 @@ Bạn chỉ cần mở file này và chỉnh sửa:
 
 ### Deploy lên Azure Web App (App Service, Windows)
 
-Workflow `.github/workflows/azure-webapp.yml` build ứng dụng bằng Node.js/Vite và deploy thư mục `dist` lên App Service. File `public/web.config` cấu hình IIS trả về `index.html` cho các URL của React SPA.
+Workflow `.github/workflows/azure-webapps-node.yml` build ứng dụng bằng Node.js/Vite và deploy thư mục `dist` lên App Service. File `public/web.config` cấu hình IIS trả về `index.html` cho các URL của React SPA.
 
 1. Tạo Azure Web App và chọn **Windows** làm hệ điều hành.
 2. Trong GitHub repository, mở **Settings → Secrets and variables → Actions**:
    - Thêm repository variable `AZURE_WEBAPP_NAME` với tên Web App trên Azure.
    - Tải **Publish profile** từ trang Overview của Web App rồi thêm toàn bộ nội dung thành repository secret `AZURE_WEBAPP_PUBLISH_PROFILE`.
 3. Push lên nhánh `main` để chạy build và deploy tự động.
-
-Nếu repository đang có workflow .NET chạy `dotnet build`, hãy thay thế hoặc xóa workflow đó; dự án này là React/Vite, không có project .NET.
