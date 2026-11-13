@@ -12,6 +12,16 @@ Website cá nhân dành cho **Kỹ sư AI / Machine Learning (AI & ML Engineer)*
 - **Deployment Platforms:** Microsoft Azure Static Web Apps, Azure App Service
 - **CI/CD:** GitHub Actions (tự động build & deploy)
 
+## Khám phá các thế giới
+
+Trang chủ là bản đồ 5 cánh cổng. Khi chọn một mục, robot Nova đi đến cửa, đưa tay mở cửa rồi chuyển cảnh xuyên cổng; chỉ nội dung của mục đó được hiển thị. Nhân vật và cánh cổng được vẽ bằng SVG/CSS, không cần tải mô hình 3D hay thư viện animation.
+
+- Các đường dẫn trực tiếp: `#about`, `#skills`, `#projects`, `#experience`, `#contact`. Hỗ trợ tải lại, Back/Forward và liên kết giữa các mục.
+- **Trở về bản đồ** hoặc phím **Escape** quay lại màn khám phá. **Vào ngay** bỏ qua phần chuyển cảnh.
+- Nút **Chuyển động** lưu tùy chọn giảm chuyển động trên trình duyệt; website cũng tôn trọng `prefers-reduced-motion` của thiết bị.
+- Luồng điều hướng nằm trong `src/components/WorldExperience.jsx`, nhân vật trong `src/components/Explorer.jsx`, giao diện và animation trong `src/world.css`.
+- Kiểm tra tương tác bằng `npm run test:e2e` (Playwright dùng Microsoft Edge đã cài). Kiểm tra gồm 5 cổng, bàn phím, hủy chuyển cảnh, lịch sử, bộ lọc và mobile. Ảnh chụp kiểm tra nằm trong `test-results/`.
+
 ---
 
 ## Hướng dẫn chạy thử ở môi trường Local

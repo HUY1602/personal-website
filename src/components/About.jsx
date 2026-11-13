@@ -13,6 +13,14 @@ export default function About() {
   return (
     <section id="about" className="scroll-reveal py-20 sm:py-28 relative border-t border-zinc-900">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="profile-world-intro">
+          <img src={profileData.personal.avatar} alt={profileData.personal.fullName} width="72" height="72" />
+          <div><p>{profileData.personal.badge}</p><h2>{profileData.personal.fullName}</h2><span>{profileData.personal.roleTitle} · {profileData.personal.location}</span></div>
+        </div>
+        <p className="profile-world-bio">{profileData.personal.shortBio}</p>
+        <div className="profile-world-stats">
+          {profileData.stats.map(stat => <div key={stat.label}><strong>{stat.value}</strong><span>{stat.label}</span></div>)}
+        </div>
         
         {/* Section Header */}
         <div className="max-w-2xl mb-12 sm:mb-16">
