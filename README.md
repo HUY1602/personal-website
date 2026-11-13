@@ -14,12 +14,14 @@ Website cá nhân dành cho **Kỹ sư AI / Machine Learning (AI & ML Engineer)*
 
 ## Khám phá các thế giới
 
-Trang chủ là bản đồ 5 cánh cổng. Khi chọn một mục, robot Nova đi đến cửa, đưa tay mở cửa rồi chuyển cảnh xuyên cổng; chỉ nội dung của mục đó được hiển thị. Nhân vật và cánh cổng được vẽ bằng SVG/CSS, không cần tải mô hình 3D hay thư viện animation.
+Trang chủ là bản đồ 5 cánh cổng. Khi chọn một mục, bé người cáo Nova đi đến cửa, đưa tay mở cửa rồi chuyển cảnh xuyên cổng; chỉ nội dung của mục đó được hiển thị. Nova có tóc cam dài, mắt xanh, tai cáo lông trắng, váy xanh xám và tạp dề trắng theo ảnh tham chiếu; thân và chân dài hơn để giữ tỷ lệ cân đối. Khi đứng yên, Nova cầm một tấm bảng nhỏ. Nhân vật và cánh cổng được vẽ bằng SVG/CSS, không cần tải mô hình 3D hay thư viện animation.
 
 - Các đường dẫn trực tiếp: `#about`, `#skills`, `#projects`, `#experience`, `#contact`. Hỗ trợ tải lại, Back/Forward và liên kết giữa các mục.
 - **Trở về bản đồ** hoặc phím **Escape** quay lại màn khám phá. **Vào ngay** bỏ qua phần chuyển cảnh.
+- Nhấn Nova để chào; nhấn 3 lần nhanh để thấy phản ứng ôm đầu. Giữ và kéo bằng chuột hoặc cảm ứng để đặt Nova ở vị trí khác, hoặc dùng phím mũi tên khi Nova có tiêu điểm. Các thao tác này dùng được trên bản đồ và trong từng thế giới.
+- Cửa mở với ánh sáng dịu cùng màu xuất phát từ chính cánh cửa, lan qua Nova rồi bao phủ màn hình trước khi chuyển thế giới. Bản đồ vẫn hiện trong lúc ánh sáng bao trùm nhân vật; không có đường hầm hay vòng sáng lao nhanh.
 - Nút **Chuyển động** lưu tùy chọn giảm chuyển động trên trình duyệt; website cũng tôn trọng `prefers-reduced-motion` của thiết bị.
-- Luồng điều hướng nằm trong `src/components/WorldExperience.jsx`, nhân vật trong `src/components/Explorer.jsx`, giao diện và animation trong `src/world.css`.
+- Luồng điều hướng nằm trong `src/components/WorldExperience.jsx`, tương tác Nova trong `src/components/NovaCompanion.jsx`, hình nhân vật trong `src/components/Explorer.jsx`, giao diện và animation trong `src/world.css`.
 - Kiểm tra tương tác bằng `npm run test:e2e` (Playwright dùng Microsoft Edge đã cài). Kiểm tra gồm 5 cổng, bàn phím, hủy chuyển cảnh, lịch sử, bộ lọc và mobile. Ảnh chụp kiểm tra nằm trong `test-results/`.
 
 ---

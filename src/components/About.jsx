@@ -23,12 +23,12 @@ export default function About() {
         </div>
         
         {/* Section Header */}
-        <div className="max-w-2xl mb-12 sm:mb-16">
+        <div className="about-world-heading mb-12 sm:mb-16">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-300 text-xs font-mono mb-4">
             <span className="w-1.5 h-1.5 rounded-full bg-sky-400"></span>
             Về bản thân & Triết lý
           </div>
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">
+          <h2 className="text-3xl font-bold tracking-tight text-white">
             Đưa mô hình AI từ nghiên cứu vào sản phẩm thực tế.
           </h2>
         </div>
