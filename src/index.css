@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    color-scheme: dark;
+    color-scheme: light;
   }
   
   html {
@@ -12,8 +12,8 @@
   }
 
   body {
-    background-color: #09090b;
-    color: #f4f4f5;
+    background-color: #f7f4ea;
+    color: #26333a;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -38,8 +38,8 @@
 /* Organic Bento Grid Card Styling */
 .bento-card {
   position: relative;
-  background: rgba(24, 24, 27, 0.45);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.76);
+  border: 1px solid rgba(67, 93, 75, 0.13);
   border-radius: 1.25rem;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
@@ -52,7 +52,7 @@
   inset: 0;
   border-radius: inherit;
   padding: 1px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.02) 100%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.08) 100%);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
@@ -60,14 +60,14 @@
 }
 
 .bento-card:hover {
-  border-color: rgba(255, 255, 255, 0.16);
-  background: rgba(24, 24, 27, 0.65);
+  border-color: rgba(67, 125, 91, 0.3);
+  background: rgba(255, 255, 255, 0.96);
   transform: translateY(-4px);
-  box-shadow: 0 20px 42px -14px rgba(14, 165, 233, 0.13), 0 16px 36px -12px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 20px 42px -14px rgba(78, 132, 93, 0.18), 0 16px 36px -12px rgba(47, 67, 49, 0.12);
 }
 
 .bento-card:focus-within {
-  border-color: rgba(56, 189, 248, 0.4);
+  border-color: rgba(56, 130, 102, 0.45);
 }
 
 .scroll-reveal {
@@ -91,8 +91,8 @@
   position: relative;
   isolation: isolate;
   background-image:
-    radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.07) 0%, transparent 50%),
-    radial-gradient(circle at 85% 30%, rgba(99, 102, 241, 0.04) 0%, transparent 40%);
+    radial-gradient(circle at 50% 0%, rgba(242, 200, 121, 0.18) 0%, transparent 50%),
+    radial-gradient(circle at 85% 30%, rgba(126, 171, 137, 0.12) 0%, transparent 40%);
 }
 
 .bg-subtle-mesh::before {
@@ -102,9 +102,9 @@
   z-index: -1;
   pointer-events: none;
   background:
-    radial-gradient(ellipse at 20% 25%, rgba(14, 165, 233, 0.11), transparent 32%),
-    radial-gradient(ellipse at 78% 40%, rgba(99, 102, 241, 0.09), transparent 30%),
-    radial-gradient(ellipse at 55% 85%, rgba(20, 184, 166, 0.06), transparent 28%);
+    radial-gradient(ellipse at 20% 25%, rgba(242, 200, 121, 0.16), transparent 32%),
+    radial-gradient(ellipse at 78% 40%, rgba(126, 171, 137, 0.12), transparent 30%),
+    radial-gradient(ellipse at 55% 85%, rgba(199, 157, 112, 0.08), transparent 28%);
   filter: blur(28px);
   animation: ambient-drift 18s ease-in-out infinite alternate;
 }

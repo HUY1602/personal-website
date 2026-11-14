@@ -7,21 +7,23 @@ Website cá nhân dành cho **Kỹ sư AI / Machine Learning (AI & ML Engineer)*
 ## Công nghệ sử dụng
 
 - **Frontend:** React 18, Vite
-- **Styling:** Tailwind CSS (Dark Mode & Cyberpunk AI Glow effects)
+- **Styling:** Tailwind CSS, khung cảnh đồng hoa và hoạt ảnh CSS/SVG
 - **Icons:** Lucide Icons & Custom SVGs
 - **Deployment Platforms:** Microsoft Azure Static Web Apps, Azure App Service
 - **CI/CD:** GitHub Actions (tự động build & deploy)
 
 ## Khám phá các thế giới
 
-Trang chủ là bản đồ 5 cánh cổng. Khi chọn một mục, bé người cáo Nova đi đến cửa, đưa tay mở cửa rồi chuyển cảnh xuyên cổng; chỉ nội dung của mục đó được hiển thị. Nova có tóc cam dài, mắt xanh, tai cáo lông trắng, váy xanh xám và tạp dề trắng theo ảnh tham chiếu; thân và chân dài hơn để giữ tỷ lệ cân đối. Khi đứng yên, Nova cầm một tấm bảng nhỏ. Nhân vật và cánh cổng được vẽ bằng SVG/CSS, không cần tải mô hình 3D hay thư viện animation.
+Trang chủ là cánh đồng toàn màn hình với một cửa gỗ và 5 biểu tượng. Nova là cô gái tóc dài, đội mũ cói, áo ghi lê nâu và váy xanh theo ảnh mẫu. Chọn biểu tượng để Nova bước đến, đưa tay mở cửa rồi đi vào ánh sáng cùng màu. Mỗi mục có một cánh đồng hoa riêng: xanh dương (giới thiệu), xanh bạc hà (dự án), tím (kỹ năng), vàng (kinh nghiệm), hồng (liên hệ). Chỉ nội dung của mục đang chọn được hiển thị.
+
+Cảnh và bốn tư thế nhân vật là ảnh raster trong `public/images/meadow/`; cỏ, hoa và phấn hoa tiền cảnh có hoạt ảnh gió. Cánh cửa dùng CSS 3D. Không cần mô hình 3D hay thư viện animation. Nguồn tạo ảnh và prompt được ghi trong `public/images/meadow/ASSETS.md`.
 
 - Các đường dẫn trực tiếp: `#about`, `#skills`, `#projects`, `#experience`, `#contact`. Hỗ trợ tải lại, Back/Forward và liên kết giữa các mục.
 - **Trở về bản đồ** hoặc phím **Escape** quay lại màn khám phá. **Vào ngay** bỏ qua phần chuyển cảnh.
-- Nhấn Nova để chào; nhấn 3 lần nhanh để thấy phản ứng ôm đầu. Giữ và kéo bằng chuột hoặc cảm ứng để đặt Nova ở vị trí khác, hoặc dùng phím mũi tên khi Nova có tiêu điểm. Các thao tác này dùng được trên bản đồ và trong từng thế giới.
+- Nhấn Nova để chào; nhấn 3 lần nhanh để thấy phản ứng kêu đau. Giữ và kéo bằng chuột hoặc cảm ứng để đặt Nova ở vị trí khác, hoặc dùng phím mũi tên khi Nova có tiêu điểm. Các thao tác này dùng được trên cánh đồng và trong từng thế giới.
 - Cửa mở với ánh sáng dịu cùng màu xuất phát từ chính cánh cửa, lan qua Nova rồi bao phủ màn hình trước khi chuyển thế giới. Bản đồ vẫn hiện trong lúc ánh sáng bao trùm nhân vật; không có đường hầm hay vòng sáng lao nhanh.
-- Nút **Chuyển động** lưu tùy chọn giảm chuyển động trên trình duyệt; website cũng tôn trọng `prefers-reduced-motion` của thiết bị.
-- Luồng điều hướng nằm trong `src/components/WorldExperience.jsx`, tương tác Nova trong `src/components/NovaCompanion.jsx`, hình nhân vật trong `src/components/Explorer.jsx`, giao diện và animation trong `src/world.css`.
+- Nút **Gió đang thổi / Ít chuyển động** lưu tùy chọn giảm chuyển động trên trình duyệt; website cũng tôn trọng `prefers-reduced-motion` của thiết bị.
+- Luồng điều hướng nằm trong `src/components/WorldExperience.jsx`, tương tác Nova trong `src/components/NovaCompanion.jsx`, hình nhân vật trong `src/components/MeadowGirl.jsx`, lớp cỏ/hoa trong `src/components/MeadowAtmosphere.jsx`, giao diện và animation trong `src/world.css`.
 - Kiểm tra tương tác bằng `npm run test:e2e` (Playwright dùng Microsoft Edge đã cài). Kiểm tra gồm 5 cổng, bàn phím, hủy chuyển cảnh, lịch sử, bộ lọc và mobile. Ảnh chụp kiểm tra nằm trong `test-results/`.
 
 ---

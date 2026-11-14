@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import Explorer from './Explorer';
+import MeadowGirl from './MeadowGirl';
 
 const messages = {
   idle: 'Đi cùng mình nhé!',
@@ -133,7 +133,7 @@ export default function NovaCompanion({ boundsRef, position, onPositionChange, p
       onKeyDown={keyDown} onContextMenu={event => event.preventDefault()}
     >
       {!disabled && (!inWorld || mood !== 'idle') && <span className={`explorer-bubble ${position?.x < 20 ? 'bubble-left-edge' : position?.x > 80 ? 'bubble-right-edge' : ''}`} aria-hidden="true">{messages[mood]}</span>}
-      <Explorer /><span className="explorer-shadow" aria-hidden="true" /><span className="explorer-name" aria-hidden="true">NOVA</span>
+      <MeadowGirl /><span className="explorer-shadow" aria-hidden="true" /><span className="explorer-name" aria-hidden="true">NOVA</span>
       <span className="sr-only" role="status">{mood !== 'idle' ? messages[mood] : ''}</span>
     </button>
   );

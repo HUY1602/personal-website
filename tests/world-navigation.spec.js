@@ -22,11 +22,11 @@ for (const [id, name] of worlds) {
     await page.locator(`[data-portal="${id}"]`).click();
     await page.clock.runFor(100);
     await expect(page.locator('.explorer-walking')).toBeVisible();
-    await page.clock.runFor(1000);
+    await page.clock.runFor(1600);
     await expect(page.locator(`[data-portal="${id}"].is-opening`)).toBeVisible();
-    await page.clock.runFor(800);
+    await page.clock.runFor(1100);
     await expect(page.locator('.portal-transition')).toBeVisible();
-    await page.clock.runFor(1400);
+    await page.clock.runFor(1900);
     await expect(page.getByRole('heading', { name, exact: true })).toBeFocused();
     await expect(page).toHaveURL(new RegExp(`#${id}$`));
     await expect(page.locator('main section')).toHaveCount(1);
@@ -51,6 +51,9 @@ test('navigation history, refresh, internal links and project filters work', asy
   await expect(page.locator('.universe-map')).toBeVisible();
   await page.goto('/#about');
   await page.reload();
+  await expect(page.locator('#about')).toBeVisible();
+  await page.getByRole('link', { name: 'Đọc câu chuyện' }).click();
+  await expect(page).toHaveURL(/#about$/);
   await expect(page.locator('#about')).toBeVisible();
   await page.getByRole('link', { name: 'Thảo luận giải pháp' }).click();
   await expect(page.locator('#contact')).toBeVisible();
@@ -108,6 +111,7 @@ test('motion toggle persists and mobile portals remain inside the viewport', asy
 
 test('desktop map and destination render without overflow', async ({ page }, testInfo) => {
   await page.goto('/');
+  await page.evaluate(() => document.fonts.ready);
   await page.screenshot({ path: testInfo.outputPath('desktop-map.png'), fullPage: true });
   expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBe(1440);
   await page.goto('/#projects');
@@ -115,7 +119,35 @@ test('desktop map and destination render without overflow', async ({ page }, tes
   expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBe(1440);
 });
 
-test('Nova greets, holds its head after repeated taps, and recovers', async ({ page }, testInfo) => {
+test('one door contains five destinations and each world loads its own flower field', async ({ page }, testInfo) => {
+  await page.goto('/');
+  await expect(page.locator('.portal-frame')).toHaveCount(1);
+  await expect(page.locator('.portal-frame [data-portal]')).toHaveCount(5);
+  expect(await page.locator('.world-hub').evaluate(element => element.getBoundingClientRect().height)).toBe(1000);
+  const sprite = await page.locator('.girl-sprite').evaluate(async element => {
+    const source = getComputedStyle(element).backgroundImage.match(/url\("?([^"\)]+)/)[1];
+    const image = new Image(); image.src = source; await image.decode();
+    return { width: image.naturalWidth, height: image.naturalHeight };
+  });
+  expect(sprite.width / 4 / sprite.height).toBe(.75);
+  const scenes = new Set();
+  for (const [id] of worlds) {
+    await page.goto(`/#${id}`);
+    const asset = await page.locator('.landscape-flowers').evaluate(async element => {
+      const source = getComputedStyle(element).backgroundImage.match(/url\("?([^"\)]+)/)[1];
+      const image = new Image(); image.src = source; await image.decode();
+      return { source, width: image.naturalWidth };
+    });
+    expect(asset.width).toBeGreaterThan(1500);
+    expect(asset.source).toContain(`field-${id}.jpg`);
+    scenes.add(asset.source);
+    await expect(page.locator('main section')).toHaveCount(1);
+  }
+  expect(scenes.size).toBe(5);
+  await page.screenshot({ path: testInfo.outputPath('pink-flower-world.png'), animations: 'disabled' });
+});
+
+test('Nova greets, reacts after repeated taps, and recovers', async ({ page }, testInfo) => {
   await page.goto('/');
   await freezeClock(page);
   const nova = page.getByRole('button', { name: /^Nova —/ });
@@ -124,7 +156,7 @@ test('Nova greets, holds its head after repeated taps, and recovers', async ({ p
   await expect(nova.locator('.explorer-bubble')).toHaveText('Xin chào! Mình là Nova 👋');
   await nova.click({ clickCount: 2 });
   await expect(nova).toHaveClass(/mood-hurt/);
-  await expect(nova.locator('.nova-hurt-hands')).toBeVisible();
+  await expect(nova.locator('.explorer-bubble')).toHaveText('Ái da! Nhẹ tay với mình nhé!');
   await page.screenshot({ path: testInfo.outputPath('nova-hurt.png') });
   await page.clock.runFor(2700);
   await expect(nova).toHaveClass(/mood-idle/);
@@ -151,7 +183,7 @@ test('holding and dragging Nova changes its position without a greeting or a res
   const preparing = await nova.boundingBox();
   expect(preparing.x).toBeCloseTo(dropped.x, 0);
   expect(preparing.y).toBeCloseTo(dropped.y, 0);
-  await page.clock.runFor(3400);
+  await page.clock.runFor(4700);
   await expect(page.locator('#projects')).toBeVisible();
 });
 
@@ -167,11 +199,11 @@ test('Nova supports touch dragging, pointer cancellation, and keyboard repositio
   const y = start.y + start.height / 2;
   await touch.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x, y }] });
   await expect(nova).toHaveClass(/mood-dragging/);
-  await touch.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [{ x: x - 100, y: y - 80 }] });
+  await touch.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [{ x: x + 70, y: y - 80 }] });
   await touch.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
   await expect(nova).toHaveClass(/mood-idle/);
   const moved = await nova.boundingBox();
-  expect(moved.x - start.x).toBeCloseTo(-100, 0);
+  expect(moved.x - start.x).toBeCloseTo(70, 0);
   expect(moved.y - start.y).toBeCloseTo(-80, 0);
   await nova.focus();
   await page.keyboard.press('ArrowLeft');
@@ -181,7 +213,9 @@ test('Nova supports touch dragging, pointer cancellation, and keyboard repositio
   await expect(nova).toHaveClass(/mood-dragging/);
   await touch.send('Input.dispatchTouchEvent', { type: 'touchCancel', touchPoints: [] });
   await expect(nova).toHaveClass(/mood-idle/);
+  await freezeClock(page);
   await page.locator('[data-portal="skills"]').click();
+  await page.clock.runFor(4700);
   await expect(page.locator('#skills')).toBeVisible();
   await context.close();
 });
@@ -237,7 +271,7 @@ test('new portal icons and a soft forward light replace the tunnel', async ({ pa
   await expect(page.locator('.forward-light')).toBeVisible();
   await expect(page.locator('.warp-tunnel')).toHaveCount(0);
   await page.screenshot({ path: testInfo.outputPath('soft-transition.png'), animations: 'disabled' });
-  await page.clock.runFor(1400);
+  await page.clock.runFor(2700);
   await expect(page.locator('#about')).toBeVisible();
 });
 
@@ -250,9 +284,9 @@ for (const device of [
     await page.goto('/');
     await freezeClock(page);
     await page.locator(`[data-portal="${device.portal}"]`).click();
-    await page.clock.runFor(1200);
+    await page.clock.runFor(1800);
     await expect(page.locator('.light-opening')).toBeVisible();
-    const door = await page.locator(`[data-portal="${device.portal}"] .portal-frame`).boundingBox();
+    const door = await page.locator('.portal-frame').boundingBox();
     const origin = await page.locator('.forward-light').evaluate(element => ({ x: parseFloat(getComputedStyle(element).left), y: parseFloat(getComputedStyle(element).top) }));
     expect(origin.x).toBeCloseTo(door.x + door.width / 2, 0);
     expect(origin.y).toBeCloseTo(door.y + door.height / 2, 0);
@@ -262,15 +296,16 @@ for (const device of [
     // show the actual choreography instead of skipping straight to its last frame.
     await page.locator('.forward-light').evaluate(element => element.getAnimations().forEach(animation => { animation.pause(); animation.currentTime = 790; }));
     await page.screenshot({ path: testInfo.outputPath(`${device.name}-door-opening.png`) });
-    await page.clock.runFor(800);
+    await page.clock.runFor(1100);
     await expect(page.locator('.light-entering')).toBeVisible();
     await page.evaluate(() => {
       for (const selector of ['.forward-light', '.portal-light-veil', '.explorer-entering .nova']) {
-        document.querySelector(selector).getAnimations().forEach(animation => { animation.pause(); animation.currentTime = 450; });
+        document.querySelector(selector).getAnimations().forEach(animation => { animation.pause(); animation.currentTime = 720; });
       }
     });
     const light = await page.locator('.forward-light').boundingBox();
-    const nova = await page.locator('.explorer-entering').boundingBox();
+    // Measure the artwork after its perspective scale, not the larger drag hitbox.
+    const nova = await page.locator('.explorer-entering .nova').boundingBox();
     expect(light.x).toBeLessThan(nova.x);
     expect(light.y).toBeLessThan(nova.y);
     expect(light.x + light.width).toBeGreaterThan(nova.x + nova.width);
@@ -278,7 +313,7 @@ for (const device of [
     expect(Number(await page.locator('.portal-light-veil').evaluate(element => getComputedStyle(element).opacity))).toBe(0);
     expect(Number(await page.locator('.explorer-entering .nova').evaluate(element => getComputedStyle(element).opacity))).toBeGreaterThan(.75);
     await page.screenshot({ path: testInfo.outputPath(`${device.name}-light-embraces-nova.png`) });
-    await page.clock.runFor(1400);
+    await page.clock.runFor(1900);
     await expect(page.locator(`#${device.portal}`)).toBeVisible();
     await expect(page.locator('.portal-transition')).toHaveCount(0);
   });
